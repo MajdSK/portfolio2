@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Champagne+%26+Limousines&family=Simplified+Arabic+Fixed&family=Tw+Cen+MT&display=swap');
+@theme {
+  /* 1. Define the Keyframes */
+  @keyframes movement {
+    0% { transform: translate(-100%, 0); }
+    10% { transform: translate(-70%, -5px); }
+    20% { transform: translate(-40%, -10px) skew(10deg); }
+    30% { transform: translate(-10%, -15px) skew(10deg); }
+    40% { transform: translate(20%, -10px) skew(10deg);  }
+    50% { transform: translate(50%, -5px) skew(10deg);}
+    60% { transform: translate(80%, 0) skew(-10deg); }
+    70% { transform: translate(120%, 5px) skew(-10deg); }
+    80% { transform: translate(150%, 10px);}
+    90% { transform: translate(180%, 5px); }
+    100% { transform: translate(280%, 0) skewX(-20deg); }
+  }
+
+  /* 2. Create the utility variable */
+  --animate-movement: movement 35s linear infinite;
+  --MBlack: #071E22;
+  --MRed: #840032;
+  --Mgreen: #73877B;
+  --Mcream: #F4ECD6;
+  --gradient:linear-gradient(90deg, transparent 0%, var(--MRed) 70%, transparent 100%);
+
+  --font-TW: 'Tw Cen MT', sans-serif;
+  --font-SA: 'Simplified Arabic Fixed', sans-serif;
+  --font-CL: 'Champagne & Limousines', sans-serif;
+}
