@@ -23,7 +23,9 @@
   --Mgreen: #73877B;
   --Mcream: #F4ECD6;
   --gradient:linear-gradient(90deg, transparent 0%, var(--MRed) 70%, transparent 100%);
-
+  --gradientT:linear-gradient(90deg, transparent 0%, var(--MBlack) 70%, transparent 100%);
+  --gradientTh:linear-gradient(90deg, transparent 0%, var(--Mcream) 70%, transparent 100%);
+  
   --font-TW: 'Tw Cen MT', sans-serif;
   --font-SA: 'Simplified Arabic Fixed', sans-serif;
   --font-CL: 'Champagne & Limousines', sans-serif;
