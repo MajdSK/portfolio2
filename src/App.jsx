@@ -41,10 +41,10 @@ function Navigation(){
     );
   }
   return(
-    <nav className={`nav transition-all duration-350 ease-in-out`} style={ { marginLeft: isMenuOpen ? `calc(100dvw - ${width}px - 400px)` : `calc(100dvw - ${width}px - 100px)` }}>
+    <nav className={`nav transition-all duration-350 ease-in-out`} style={ { marginLeft: `calc(100dvw - ${width}px - 100px)` }}>
             <div>
             <div>
-              <button className='MenuB block relative z-2 transition-all duration-300 ease-in' style={{opacity: isMenuOpen ? `0` : `100`}} onMouseEnter={()=>{
+              <button className='MenuB block relative z-2' style={{opacity: isMenuOpen ? `0` : `100`}} onMouseEnter={()=>{
                 setIsMenuOpen(true);
               }} onMouseLeave={()=>{
                 setIsMenuOpen(false);
@@ -55,7 +55,7 @@ function Navigation(){
                 setIsMenuOpen(true);
               }} onMouseLeave={()=>{
                 setIsMenuOpen(false);
-              }} className={`MenuList transition-all duration-500 ${isMenuOpen ? 'opacity-100' : 'opacity-0'} h-dvh w-75 bg-(--Mcream) flex flex-col items-center justify-start absolute -top-10 right-10 rounded-bl-[20px] rounded-tl-[20px]`}>
+              }} className={`MenuList transition-all duration-100 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-100'} h-dvh w-75 bg-(--Mcream) flex flex-col items-center justify-start absolute -top-10 right-10 rounded-bl-[20px] rounded-tl-[20px]`}>
                 <p className='font-CL font-bold text-[60px] mt-10 '>/menu</p>
                 <ul className='w-75 font-CL list-none mt-20 p-0 '>
                   <SetActivePageItem name="Main Page" />
