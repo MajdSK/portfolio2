@@ -21,6 +21,12 @@
   --MRed: #840032;
   --Mgreen: #73877B;
   --Mcream: #F4ECD6;
+  --Mcream-40: #f4ecd624;
+  --Mcream-70: #f4ecd69d;
+
+  --selectionGradientTop: linear-gradient(to top, transparent 0%, var(--Mcream) 100%);
+  --selectionGradientBottom: linear-gradient(to top, var(--Mcream) 0%, transparent 100%);
+
   --gradient:linear-gradient(90deg, transparent 0%, var(--MRed) 70%, transparent 100%);
   --gradientT:linear-gradient(90deg, transparent 0%, var(--MBlack) 70%, transparent 100%);
   --gradientTh:linear-gradient(90deg, transparent 0%, var(--Mcream) 70%, transparent 100%);
