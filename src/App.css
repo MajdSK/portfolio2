@@ -14,8 +14,65 @@
     88% { transform: translate(130%, 0px) rotate(320deg); }
     100% { transform: translate(150%, 0px) rotate(360deg); }
   }
-
-  /* 2. Create the utility variable */
+  @keyframes toTop{
+    0%{
+      opacity: 0.1;
+    }
+    25%{
+      background-image: var(--selectionGradientTop);
+      opacity: 0.25;
+    }
+    50%{
+      background-image: var(--selectionGradientTop);
+      opacity: 0.5;
+    }
+    75%{
+      background-image: var(--selectionGradientTop);
+      opacity: 0.75;
+    }
+    100%{
+      background-image: var(--selectionGradientTop);
+      opacity: 1;
+    }
+  }
+  @keyframes toBottom{
+    0%{
+      opacity:0.1;
+    }
+    25%{
+      background-image: var(--selectionGradientBottom);
+      opacity: 0.25;
+    }
+    50%{
+      background-image: var(--selectionGradientBottom);
+      opacity: 0.5;
+    }
+    75%{
+      background-image: var(--selectionGradientBottom);
+      opacity: 0.75;
+    }
+    100%{
+      background-image: var(--selectionGradientBottom);
+      opacity: 1;
+    }
+  }
+  @keyframes solidC{
+    0%{
+      opacity: 0.5;
+    }
+    50%{
+      background-image: none;
+      background-color: var(--Mcream);
+      opacity: 0.5;
+    }
+    100%{
+      background-color:var(--Mcream-40);
+      opacity: 1;
+    }
+  }
+  --animate-fadeTopSel: toTop 0.5s linear forwards;
+  --animate-fadeBotSel: toBottom 0.5s linear forwards;
+  --animate-fadeNoSel: SolidC 0.5s linear forwards;
   --animate-movement: movement 25s linear infinite;
   --MBlack: #071E22;
   --MRed: #840032;

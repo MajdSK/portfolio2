@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect, useCallback, memo } from 'react'
 import WavyCanvas from './canvas'
-import NavCanvas from './canvas2'
 import './App.css'
 
 // Isolated Title Component - only re-renders when title prop changes
@@ -29,17 +28,15 @@ const Title = memo(({ title, onWidthChange }) => {
 Title.displayName = 'Title';
 
 // Isolated Menu Item - only re-renders when activeMenu or name prop changes
-const SetActivePageItem = memo(({ name, activeMenu, onMenuSelect }) => {
+const SetActivePageItem = memo(({ name, activeMenu, onMenuSelect, className }) => {
   return (
-    <div>
-      <button
-        className={`transition-all duration-300 font-SA text-nowrap text-[10px] text-center tracking-wide opacity-40 leading-20 font-light text-(--Mcream) ${activeMenu === name ? 'opacity-100' : "opacity-40"
-          } hover:text-(--Mcream) hover:opacity-70 cursor-pointer`}
-        onClick={() => onMenuSelect(name)}
-      >
-        {name}
-      </button>
-    </div>
+    <button
+      className={`${className} transition-all duration-300 font-SA text-nowrap text-[10px] leading-none relative top-0.5 inline opacity-40 font-light text-(--Mcream) ${activeMenu === name ? 'opacity-100' : "opacity-40"
+        } cursor-pointer`}
+      onClick={() => onMenuSelect(name)}
+    >
+      {name}
+    </button>
   );
 });
 
@@ -48,25 +45,33 @@ SetActivePageItem.displayName = 'SetActivePageItem';
 // Isolated Navigation Component - only re-renders when width, isMenuOpen, or activeMenu changes
 const Navigation = memo(({ width, isMenuOpen, onMenuOpen, onMenuClose, activeMenu, onMenuSelect }) => {
   return (
-    <nav className={`nav relative top-80`} style={{ left: `calc(1300px - ${width}px)` }}>
-      <div className='absolute inline top-6.25 left-7'>
-        <button name="Main Page" className={`h-2 w-2 border border-(--Mcream-40) rounded-full ${activeMenu === "Main Page" ? "bg-(--Mcream)" : "bg-(--Mcream-40)"} cursor-pointer hover:border-(--Mcream)`}></button>
-        <div className={`transition-all duration-500 h-13.75 m-0 p-0 w-px ml-[3.5px] ${activeMenu == "Main Page" ? 'bg-[image:var(--selectionGradientTop)]' : activeMenu == "About Me" ? "bg-[image:var(--selectionGradientBottom)]" : "bg-(--Mcream-40)"}`}></div>
-        <button name="About Me" className={`h-2 w-2 border border-(--Mcream-40) rounded-full ${activeMenu === "About Me" ? "bg-(--Mcream)" : "bg-(--Mcream-40)"} cursor-pointer hover:border-(--Mcream)`}></button>
-        <div className={`transition-all duration-500 h-13.75 m-0 p-0 w-px ml-[3.5px] ${activeMenu == "About Me" ? 'bg-[image:var(--selectionGradientTop)]' : activeMenu == "My Projects" ? "bg-[image:var(--selectionGradientBottom)]" : "bg-(--Mcream-40)"}`}></div>
-        <button name="My Projects" className={`h-2 w-2 border border-(--Mcream-40) rounded-full ${activeMenu === "My Projects" ? "bg-(--Mcream)" : "bg-(--Mcream-40)"} cursor-pointer hover:border-(--Mcream)`}></button>
-        <div className={`transition-all duration-500 h-13.75 m-0 p-0 w-px ml-[3.5px] ${activeMenu == "My Projects" ? 'bg-[image:var(--selectionGradientTop)]' : activeMenu == "My C.V." ? "bg-[image:var(--selectionGradientBottom)]" : "bg-(--Mcream-40)"}`}></div>
-        <button name="My C.V." className={`h-2 w-2 border border-(--Mcream-40) rounded-full ${activeMenu === "My C.V." ? "bg-(--Mcream)" : "bg-(--Mcream-40)"} cursor-pointer hover:border-(--Mcream)`}></button>
-        <div className={`transition-all duration-500 h-13.75 m-0 p-0 w-px ml-[3.5px] ${activeMenu == "My C.V." ? 'bg-[image:var(--selectionGradientTop)]' : activeMenu == "Contacts" ? "bg-[image:var(--selectionGradientBottom)]" : "bg-(--Mcream-40)"}`}></div>
-        <button name="Contacts" className={`h-2 w-2 border border-(--Mcream-40) rounded-full ${activeMenu === "Contacts" ? "bg-(--Mcream)" : "bg-(--Mcream-40)"} cursor-pointer hover:border-(--Mcream)`}></button>
-      </div>
-      <div className='flex flex-col items-center relative'>
-        <SetActivePageItem name="Main Page" activeMenu={activeMenu} onMenuSelect={onMenuSelect} />
-        <SetActivePageItem name="About Me" activeMenu={activeMenu} onMenuSelect={onMenuSelect} />
-        <SetActivePageItem name="My Projects" activeMenu={activeMenu} onMenuSelect={onMenuSelect} />
-        <SetActivePageItem name="My C.V." activeMenu={activeMenu} onMenuSelect={onMenuSelect} />
-        <SetActivePageItem name="Contacts" activeMenu={activeMenu} onMenuSelect={onMenuSelect} />
-        <p className='text-[18px] tracking-wider opacity-95 text-(--Mgreen) font-CL mt-80'>majd-2026 • mark abt</p>
+    <nav className={`nav fixed top-5 -right-20`}>
+      <div className="grid gap-0 grid-cols-1 grid-rows-[repeat(9,auto)] items-start justify-center p-0 m-0">
+        <div className='col-span-2 group cursor-pointer row-span-1 m-0 p-0 h-2 flex justify-start items-center flex-nowrap gap-2'>
+          <button name="Main Page" className={`group-hover:border-(--Mcream) h-2 w-2 transition-all duration-300 border border-(--Mcream-40) rounded-full ${activeMenu === "Main Page" ? "bg-(--Mcream)" : "bg-(--Mcream-40)"} cursor-pointer`}></button>
+          <SetActivePageItem className="group-hover:text-(--Mcream) group-hover:opacity-70" name="Main Page" activeMenu={activeMenu} onMenuSelect={onMenuSelect} />
+        </div>
+        <div className={`transition-all duration-500 h-15 m-0 p-0 w-px ml-[3.55px] ${activeMenu == "Main Page" ? 'animate-fadeTopSel' : activeMenu == "About Me" ? "animate-fadeBotSel" : "animate-fadeNoSel"}`}></div>
+        <div className='col-span-2 group cursor-pointer row-span-1 m-0 p-0 h-2 flex justify-start items-center flex-nowrap gap-2'>
+          <button name="About Me" className={`group-hover:border-(--Mcream) h-2 w-2 transition-all duration-300 border border-(--Mcream-40) rounded-full ${activeMenu === "About Me" ? "bg-(--Mcream)" : "bg-(--Mcream-40)"} cursor-pointer`}></button>
+          <SetActivePageItem className="group-hover:text-(--Mcream) group-hover:opacity-70" name="About Me" activeMenu={activeMenu} onMenuSelect={onMenuSelect} />
+        </div>
+        <div className={`transition-all duration-500 h-15 m-0 p-0 w-px ml-[3.55px] ${activeMenu == "About Me" ? 'animate-fadeTopSel' : activeMenu == "My Projects" ? "animate-fadeBotSel" : "animate-fadeNoSel"}`}></div>
+        <div className='col-span-2 group cursor-pointer row-span-1 m-0 p-0 h-2 flex justify-start items-center flex-nowrap gap-2'>
+          <button name="My Projects" className={`group-hover:border-(--Mcream) h-2 w-2 transition-all duration-300 border border-(--Mcream-40) rounded-full ${activeMenu === "My Projects" ? "bg-(--Mcream)" : "bg-(--Mcream-40)"} cursor-pointer`}></button>
+          <SetActivePageItem className="group-hover:text-(--Mcream) group-hover:opacity-70" name="My Projects" activeMenu={activeMenu} onMenuSelect={onMenuSelect} />
+        </div>
+        <div className={`transition-all duration-500 h-15 m-0 p-0 w-px ml-[3.55px] ${activeMenu == "My Projects" ? 'animate-fadeTopSel' : activeMenu == "My C.V." ? "animate-fadeBotSel" : "animate-fadeNoSel"}`}></div>
+        <div className='col-span-2 group cursor-pointer row-span-1 m-0 p-0 h-2 flex justify-start items-center flex-nowrap gap-2'>
+          <button name="My C.V." className={`group-hover:border-(--Mcream) h-2 w-2 transition-all duration-300 border border-(--Mcream-40) rounded-full ${activeMenu === "My C.V." ? "bg-(--Mcream)" : "bg-(--Mcream-40)"} cursor-pointer`}></button>
+          <SetActivePageItem className="group-hover:text-(--Mcream) group-hover:opacity-70" name="My C.V." activeMenu={activeMenu} onMenuSelect={onMenuSelect} />
+        </div>
+        <div className={`transition-all duration-500 h-15 m-0 p-0 w-px ml-[3.55px] ${activeMenu == "My C.V." ? 'animate-fadeTopSel' : activeMenu == "Contacts" ? "animate-fadeBotSel" : "animate-fadeNoSel"}`}></div>
+        <div className='col-span-2 group cursor-pointer row-span-1 m-0 p-0 h-2 flex justify-start items-center flex-nowrap gap-2'>
+          <button name="Contacts" className={`group-hover:border-(--Mcream) h-2 w-2 transition-all duration-300 border border-(--Mcream-40) rounded-full ${activeMenu === "Contacts" ? "bg-(--Mcream)" : "bg-(--Mcream-40)"} cursor-pointer`}></button>
+          <SetActivePageItem className="group-hover:text-(--Mcream) group-hover:opacity-70" name="Contacts" activeMenu={activeMenu} onMenuSelect={onMenuSelect} />
+        </div>
+        <p className='text-[18px] tracking-wider opacity-95 text-(--Mgreen) font-CL relative -left-20 top-105'>majd-2026 • mark abt</p>
       </div>
     </nav>
   );
